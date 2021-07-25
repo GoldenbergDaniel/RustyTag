@@ -1,10 +1,10 @@
 extern crate raylib;
 
-mod player;
+mod content { pub mod player; }
 
 use raylib::prelude::*;
 use raylib::consts::ConfigFlag;
-use player::Player;
+use content::player::*;
 
 const WIDTH: i32 = 800;
 const HEIGHT: i32 = 450;
@@ -24,7 +24,7 @@ fn main() {
     let mut player = Player {
         pos: Vector2 {x: 0.0, y: 0.0},
         radius: 30.0,
-        color: Color::BLUE,
+        color: Color::WHITE,
     };
 
     while !rl.window_should_close() {

@@ -10,8 +10,8 @@ pub struct Player {
 
 impl Player {
     pub fn update(&mut self) {
-        self.pos.x += 10.0;
-        self.pos.y += 10.0;
+        self.pos.x += 16.0;
+        self.pos.y += 9.0;
     }
 }
 
