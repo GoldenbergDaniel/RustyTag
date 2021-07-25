@@ -1,10 +1,12 @@
 extern crate raylib;
 
-mod content { pub mod player; }
+mod content;
 
 use raylib::prelude::*;
 use raylib::consts::ConfigFlag;
+use content::object::*;
 use content::player::*;
+use content::enemy::*;
 
 const WIDTH: i32 = 800;
 const HEIGHT: i32 = 450;
@@ -22,9 +24,22 @@ fn main() {
         .build();
 
     let mut player = Player {
-        pos: Vector2 {x: 0.0, y: 0.0},
-        radius: 30.0,
-        color: Color::WHITE,
+        obj: Object {
+            pos: Vector2 {x: 0.0, y: 0.0},
+            speed: 5.0,
+            radius: 30.0,
+            color: Color::WHITE,
+        },
+        lives: 3,
+    };
+
+    let mut enemy = Enemy {
+        obj: Object {
+            pos: Vector2 {x: WIDTH as f32 / 2.0, y: HEIGHT as f32 / 2.0},
+            speed: 2.5,
+            radius: 20.0,
+            color: Color::RED,
+        },
     };
 
     while !rl.window_should_close() {
@@ -33,6 +48,9 @@ fn main() {
         d.clear_background(Color::BLACK);
 
         player.update();
-        player.draw(d);
+        player.draw(&mut d);
+
+        enemy.update();
+        enemy.draw(&mut d);
     }
 }
