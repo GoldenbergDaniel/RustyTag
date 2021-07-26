@@ -4,12 +4,11 @@ mod content;
 
 use raylib::prelude::*;
 use raylib::consts::ConfigFlag;
-use content::object::*;
 use content::player::*;
 use content::enemy::*;
 
 const WIDTH: i32 = 800;
-const HEIGHT: i32 = 450;
+const HEIGHT: i32 = 500;
 const TITLE: &str = "Game";
 
 fn main() {
@@ -23,24 +22,10 @@ fn main() {
         .vsync()
         .build();
 
-    let mut player = Player {
-        obj: Object {
-            pos: Vector2 {x: 0.0, y: 0.0},
-            speed: 5.0,
-            radius: 30.0,
-            color: Color::WHITE,
-        },
-        lives: 3,
-    };
+    rl.set_target_fps(60);
 
-    let mut enemy = Enemy {
-        obj: Object {
-            pos: Vector2 {x: WIDTH as f32 / 2.0, y: HEIGHT as f32 / 2.0},
-            speed: 2.5,
-            radius: 20.0,
-            color: Color::RED,
-        },
-    };
+    let mut player: Player = Player::new(Vector2 {x: 0.0, y: 0.0}, 5.0, 30.0, Color::WHITE, 3);
+    let mut enemy: Enemy = Enemy::new(Vector2 {x: 400.0, y: 250.0}, 2.5, 20.0, Color::RED);
 
     while !rl.window_should_close() {
         let mut d = rl.begin_drawing(&thread);
@@ -48,9 +33,9 @@ fn main() {
         d.clear_background(Color::BLACK);
 
         player.update();
-        player.draw(&mut d);
-
         enemy.update();
+
+        player.draw(&mut d);
         enemy.draw(&mut d);
     }
 }

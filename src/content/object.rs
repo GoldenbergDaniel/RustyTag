@@ -4,6 +4,7 @@ use raylib::prelude::*;
 
 pub struct Object {
     pub pos: Vector2,
+    pub vel: Vector2,
     pub speed: f32,
     pub radius: f32,
     pub color: Color,
