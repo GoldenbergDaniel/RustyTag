@@ -1,14 +1,14 @@
 extern crate raylib;
 
-mod content;
+mod entity;
 
 use raylib::prelude::*;
 use raylib::consts::ConfigFlag;
-use content::player::*;
-use content::enemy::*;
+use entity::player::Player;
+use entity::enemy::Enemy;
 
 const WIDTH: i32 = 800;
-const HEIGHT: i32 = 500;
+const HEIGHT: i32 = 450;
 const TITLE: &str = "Game";
 
 fn main() 
@@ -28,7 +28,7 @@ fn main()
     let mut enemy: Enemy = Enemy::new(Vector2 {x: 400.0, y: 250.0}, 2.5, 20.0, Color::RED);
 
     while !rl.window_should_close() 
-    { 
+    {
         player.update(&mut rl);
         enemy.update();
 

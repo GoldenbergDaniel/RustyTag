@@ -2,7 +2,7 @@ extern crate raylib;
 
 use raylib::prelude::*;
 use raylib::consts::KeyboardKey;
-use crate::content::object::*;
+use crate::entity::entity::Object;
 
 pub struct Player 
 {
@@ -11,7 +11,7 @@ pub struct Player
     pub lives: u8,
 }
 
-impl Player 
+impl Player
 {
     pub fn new(pos: Vector2, speed: f32, radius: f32, color: Color, lives: u8) -> Player 
     {
@@ -34,7 +34,7 @@ impl Player
 
     pub fn update(&mut self, rl: &RaylibHandle) 
     {
-        self.dir = Vector2 {x: 0.0, y:0.0};
+        self.dir = Vector2 {x: 0.0, y: 0.0};
 
         if rl.is_key_down(KeyboardKey::KEY_W) 
         {
@@ -46,22 +46,23 @@ impl Player
             self.dir.y = 1.0;
         }
 
-        if rl.is_key_down(KeyboardKey::KEY_W) && rl.is_key_down(KeyboardKey::KEY_S) 
+        if rl.is_key_down(KeyboardKey::KEY_W) && rl.is_key_down(KeyboardKey::KEY_S)
         {
             self.dir.y = 0.0;
         }
 
-        if rl.is_key_down(KeyboardKey::KEY_A) 
+        if rl.is_key_down(KeyboardKey::KEY_A)
         {
             self.dir.x = -1.0;
         }
 
-        if rl.is_key_down(KeyboardKey::KEY_D) 
+        if rl.is_key_down(KeyboardKey::KEY_D)
         {
             self.dir.x = 1.0;
         }
 
-        if rl.is_key_down(KeyboardKey::KEY_A) && rl.is_key_down(KeyboardKey::KEY_D) {
+        if rl.is_key_down(KeyboardKey::KEY_A) && rl.is_key_down(KeyboardKey::KEY_D) 
+        {
             self.dir.x = 0.0;
         }
 

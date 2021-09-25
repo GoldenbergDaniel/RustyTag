@@ -3,7 +3,7 @@ extern crate rand;
 
 use raylib::prelude::*;
 use self::rand::Rng;
-use crate::content::object::Object;
+use crate::entity::entity::Object;
 
 pub struct Enemy
 {
