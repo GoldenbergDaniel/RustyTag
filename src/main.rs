@@ -9,14 +9,11 @@ use entity::enemy::Enemy;
 
 const WIDTH: i32 = 800;
 const HEIGHT: i32 = 450;
-const TITLE: &str = "Game";
+const TITLE: &str = "RustyTag";
 
-fn main() 
+fn main()
 {
-    unsafe 
-    {
-        ffi::SetConfigFlags(ConfigFlag::FLAG_WINDOW_HIGHDPI as u32);
-    }
+    unsafe { ffi::SetConfigFlags(ConfigFlag::FLAG_WINDOW_HIGHDPI as u32); }
 
     let (mut rl, thread) = init()
         .size(WIDTH, HEIGHT)
@@ -24,7 +21,7 @@ fn main()
         .vsync()
         .build();
 
-    let mut player: Player = Player::new(Vector2 {x: 0.0, y: 0.0}, 5.0, 20.0, Color::WHITE, 3);
+    let mut player: Player = Player::new(Vector2 {x: 0.0, y: 0.0}, 5.0, 20.0, Color::WHITE);
     let mut enemy: Enemy = Enemy::new(Vector2 {x: 400.0, y: 250.0}, 2.5, 20.0, Color::RED);
 
     while !rl.window_should_close() 

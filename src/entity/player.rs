@@ -13,7 +13,7 @@ pub struct Player
 
 impl Player
 {
-    pub fn new(pos: Vector2, speed: f32, radius: f32, color: Color, lives: u8) -> Player 
+    pub fn new(pos: Vector2, speed: f32, radius: f32, color: Color) -> Player 
     {
         let p = Player 
         {
@@ -26,7 +26,7 @@ impl Player
                 color: color
             },
             dir: Vector2 {x: 0.0, y: 0.0},
-            lives: lives
+            lives: 3
         };
 
         return p;
